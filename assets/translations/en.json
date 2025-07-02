@@ -1,0 +1,79 @@
+{
+  "app_name": "My Suit",
+  "home": "Home",
+  "search": "Search for suits",
+  "categories": "Categories",
+  "wishlist": "Wishlist",
+  "cart": "Cart",
+   "search_hint": "Search for suits",
+  "search_validator": "Please enter a search term",
+  "new_arrivals": "New Arrivals",
+  "classic": "Classic",
+  "casual": "Casual",
+  "formal": "Formal",
+  "accessories": "Accessories",
+  "bestsellers": "Bestsellers" ,
+    "welcome_back": "Welcome Back!",
+  "login_to_your_account": "Login to your account",
+  "email_hint": "Email Address",
+  "email_validator": "Please enter your email",
+  "password_hint": "Password",
+  "password_validator": "Please enter your password",
+  "forgot_password": "Forgot password?",
+  "login": "Login",
+  "no_account": "Don't have an account?",
+  "register_now": "Register now"
+    ,  "register_title": "Create a new account",
+  "register_subtitle": "Fill in the details to create your account",
+  "full_name_hint": "Full name",
+  "full_name_validator": "Please enter your full name",
+  "confirm_password_hint": "Confirm password",
+  "confirm_password_validator": "Please confirm your password",
+  "passwords_not_matching": "Passwords do not match",
+  "create_account": "Create Account",
+  "have_account": "Already have an account?"
+      ,   "my_account": "My Account" ,
+        "confirm_purchase": "Confirm Purchase",
+  "purchase_confirmed": "Purchase Confirmed: {{quantity}} piece(s) - Total {{total}} EGP",
+  "quantity": "Quantity:",
+  "unit_price": "Unit Price:",
+   "rental_confirmed": "Rental Confirmed for {{days}} day(s) starting {{start}}",
+  "start_date": "Start Date",
+  "rental_duration": "Rental Duration (days)",
+  "price_per_day": "Price per day",
+  "total_price": "Total Price",
+  "confirm_rental": "Confirm Rental",
+    "change_language": "Change Language"
+    , "profile": "Profile",
+    "rental_price": "Rental: {price} EGP / day",
+  "days": "day(s)",
+  "color": "Color",
+"size": "Size",
+"add_to_cart" : "Add To Cart",
+ "no_items_found"  :  "No Items Found",
+ "price": "Price",
+ "filter_serch": "Filter Search",
+ "confirm_filter": "Confirm Filter",
+ "purchase": "Purchase",
+ "rental": "Rental",
+"select_color": "Select Color",
+"select_size": "Select Size",
+  "audience": "Audience",
+  "audience_female": "female",
+  "audience_child":"Kids",
+  "transaction":"Type",
+  "transaction_rent": "Rent",
+  "transaction_sale": "Sale",
+  "buy_now": "Buy Now",
+  "rent_now": "Rent Now",
+   "or_continue_with": "Or continue with"
+
+ 
+
+
+
+
+
+
+
+}
