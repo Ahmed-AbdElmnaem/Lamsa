@@ -28,6 +28,8 @@
   "full_name_hint": "Full name",
   "full_name_validator": "Please enter your full name",
   "confirm_password_hint": "Confirm password",
+  "phone_hint":"Phone Number",
+  "phone_validator":"Please enter your phone number",
   "confirm_password_validator": "Please confirm your password",
   "passwords_not_matching": "Passwords do not match",
   "create_account": "Create Account",

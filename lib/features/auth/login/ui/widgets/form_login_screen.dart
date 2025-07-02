@@ -28,6 +28,7 @@ class FormLoginScreen extends StatelessWidget {
               (value) =>
                   value!.isEmpty ? LocaleKeys.email_validator.tr() : null,
         ),
+
         20.0.height,
         AppTextFormField(
           keyboardType: TextInputType.visiblePassword,
@@ -38,6 +39,7 @@ class FormLoginScreen extends StatelessWidget {
               (value) =>
                   value!.isEmpty ? LocaleKeys.password_validator.tr() : null,
         ),
+
         10.0.height,
         Align(
           alignment: Alignment.centerLeft,

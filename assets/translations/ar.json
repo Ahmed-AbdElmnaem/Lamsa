@@ -26,6 +26,9 @@
   "register_subtitle": "املأ البيانات لإنشاء حسابك",
   "full_name_hint": "الاسم الكامل",
   "full_name_validator": "من فضلك أدخل اسمك الكامل",
+  "phone_hint":"رقم الجوال",
+  "phone_validator":"من فضلك ادخل رقم جوالك",
+  
   "confirm_password_hint": "تأكيد كلمة المرور",
   "confirm_password_validator": "من فضلك أدخل تأكيد كلمة المرور",
   "passwords_not_matching": "كلمتا المرور غير متطابقتين",

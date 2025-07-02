@@ -35,6 +35,8 @@ class LocaleKeys {
   static const register_title = 'register_title';
   static const register_subtitle = 'register_subtitle';
   static const full_name_hint = 'full_name_hint';
+  static const phone_hint = 'phone_hint';
+  static const phone_validator = 'phone_validator';
   static const full_name_validator = 'full_name_validator';
   static const confirm_password_hint = 'confirm_password_hint';
   static const confirm_password_validator = 'confirm_password_validator';

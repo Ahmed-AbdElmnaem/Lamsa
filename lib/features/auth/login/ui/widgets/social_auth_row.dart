@@ -84,8 +84,8 @@ class IconOnlyButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 50.w,
-        height: 50.w,
+        width: 40.w,
+        height: 40.w,
         decoration: BoxDecoration(
           color: background,
           shape: BoxShape.circle,

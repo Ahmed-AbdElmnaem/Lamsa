@@ -41,7 +41,7 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
                       child: FadeInAnimation(child: widget),
                     ),
                 children: [
-                  60.0.height,
+                  10.0.height,
                   const HeaderLoginScreen(),
                   40.0.height,
                   FormLoginScreen(
@@ -51,6 +51,7 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
 
                   30.0.height,
                   CustomButton(
+                    width: 100.w,
                     text: LocaleKeys.login.tr(),
                     onPressed: () {
                       // if (formKey.currentState!.validate()) {
