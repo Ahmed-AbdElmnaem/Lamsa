@@ -73,5 +73,11 @@
   "transaction":       "النوع",
   "transaction_rent":  "إيجار",
   "transaction_sale":  "بيع",
-  "or_continue_with": "أو استكمِل باستخدام"
+  "or_continue_with": "أو استكمِل باستخدام",
+  "hair": "شعر",
+  "skin_care": "عناية البشرة",
+  "fashion_design": "تصميم",
+  "perfume_and_accessories": "عطور واكسسوارات",
+  "makeup": "مكياج"
+
 }

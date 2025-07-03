@@ -9,4 +9,13 @@ class AssetsManager {
   static const String google = 'assets/images/png/google.png';
   static const String facebook = 'assets/images/png/facebook.png';
   static const String apple = 'assets/images/png/apple.png';
+  static const String filter = 'assets/images/png/tune.png';
+  static const String myPurchases = 'assets/images/png/local_mall.png';
+  static const String makeup = 'assets/images/makeup-icon.avif';
+  static const String haircut = 'assets/images/HAIR.jpg';
+  static const String skincare = 'assets/images/png/skin-care.png';
+  static const String fashiondesign = 'assets/images/png/FashionDesign.png';
+  static const String dress = 'assets/images/dress.png';
+  static const String perfumeandaccessories =
+      'assets/images/png/PerfumeAndAccessories.png';
 }

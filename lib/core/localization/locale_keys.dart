@@ -77,4 +77,9 @@ class LocaleKeys {
   static const transaction_rent = 'transaction_rent';
   static const transaction_sale = 'transaction_sale';
   static const or_continue_with = 'or_continue_with';
+  static const hair = 'hair';
+  static const makeup = 'makeup';
+  static const skin_care = 'skin_care';
+  static const fashion_design = 'fashion_design';
+  static const perfume_and_accessories = 'perfume_and_accessories';
 }
