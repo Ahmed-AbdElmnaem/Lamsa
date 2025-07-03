@@ -6,6 +6,26 @@ class Styles {
     fontWeight: FontWeight.w400,
   );
 
+  static const TextStyle font14W600 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle font10W400 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle font10W500 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const TextStyle font14W500 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
   static const TextStyle font18W400 = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
@@ -34,6 +54,14 @@ class Styles {
   );
   static const TextStyle font24W600 = TextStyle(
     fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle font24W700 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
+  static const TextStyle font18W600 = TextStyle(
+    fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 }
