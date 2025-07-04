@@ -7,6 +7,7 @@ import 'package:lamsa/features/auth/register/ui/screen/register_screen.dart';
 import 'package:lamsa/features/home/ui/screen/home_screen.dart';
 import 'package:lamsa/features/intro/onboarding/ui/screen/onboarding_screen.dart';
 import 'package:lamsa/features/intro/splash/splash_screen.dart';
+import 'package:lamsa/layout/main_layout.dart';
 
 import 'routes.dart';
 
@@ -18,8 +19,8 @@ class AppRouter {
 
       case Routes.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
-      // case Routes.layout:
-      //   return MaterialPageRoute(builder: (_) => const MainLayout());
+      case Routes.layout:
+        return MaterialPageRoute(builder: (_) => const MainLayout());
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
 

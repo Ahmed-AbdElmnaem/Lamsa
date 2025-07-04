@@ -57,7 +57,7 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
                       // if (formKey.currentState!.validate()) {
 
                       // }
-                      context.pushNamed(Routes.home);
+                      context.pushNamed(Routes.layout);
                     },
                   ),
                   20.0.height,
