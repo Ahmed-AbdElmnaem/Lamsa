@@ -26,12 +26,18 @@ List<CategoryModel> kFakeCategories = [
   ),
   CategoryModel(
     id: 'perfume',
-    iconPath: AssetsManager.perfumeandaccessories,
-    label: LocaleKeys.perfume_and_accessories.tr(),
+    iconPath: AssetsManager.perfume,
+    label: LocaleKeys.perfume.tr(),
   ),
   CategoryModel(
-    id: 'fashion',
-    iconPath: AssetsManager.fashiondesign,
-    label: LocaleKeys.fashion_design.tr(),
+    id: 'accessories',
+    iconPath: AssetsManager.accessories,
+    label: LocaleKeys.accessories.tr(),
+  ),
+
+  CategoryModel(
+    id: 'dress',
+    iconPath: AssetsManager.weddingdress,
+    label: LocaleKeys.dress.tr(),
   ),
 ];

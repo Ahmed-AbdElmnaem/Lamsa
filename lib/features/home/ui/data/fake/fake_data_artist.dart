@@ -41,7 +41,7 @@ final List<ArtistModel> kFakeArtists = [
   ArtistModel(
     id: 'artist_perfume_1',
     name: 'ليلى خالد',
-    specialty: LocaleKeys.perfume_and_accessories.tr(),
+    specialty: LocaleKeys.makeup.tr(),
     imageUrl:
         'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=256&q=80',
     rating: 4.5,

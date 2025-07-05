@@ -81,5 +81,11 @@ class LocaleKeys {
   static const makeup = 'makeup';
   static const skin_care = 'skin_care';
   static const fashion_design = 'fashion_design';
-  static const perfume_and_accessories = 'perfume_and_accessories';
+  static const perfume = 'perfume';
+
+  static const cart_total_price = 'cart_total_price';
+  static const cart_total_quantity = 'cart_total_quantity';
+  static const cart_total_items = 'cart_total_items';
+
+  static const dress = 'dress';
 }

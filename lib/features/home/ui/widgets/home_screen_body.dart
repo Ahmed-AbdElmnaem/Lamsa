@@ -125,6 +125,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                 child: ArtistsSection(artists: kFakeArtists),
               ),
             ),
+
             SliverPadding(
               padding: EdgeInsets.only(bottom: 32.h),
               sliver: SliverToBoxAdapter(
