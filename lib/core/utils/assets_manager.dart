@@ -16,6 +16,8 @@ class AssetsManager {
   static const String skincare = 'assets/images/png/skin-care.png';
   static const String fashiondesign = 'assets/images/png/FashionDesign.png';
   static const String dress = 'assets/images/dress.png';
-  static const String perfumeandaccessories =
-      'assets/images/png/PerfumeAndAccessories.png';
+  static const String perfume = 'assets/images/png/perfume.png';
+  static const String accessories = 'assets/images/png/accessories.png';
+
+  static const String weddingdress = 'assets/images/png/wedding-dress.png';
 }

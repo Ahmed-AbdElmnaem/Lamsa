@@ -14,18 +14,21 @@ class CategoryCard extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 56.h,
-          width: 56.h,
+          height: 65.h,
+          width: 65.h,
           decoration: BoxDecoration(
             color: ColorManager.mainColor,
-            borderRadius: BorderRadius.circular(5.r),
+            borderRadius: BorderRadius.circular(16.r),
           ),
           child: Center(
-            child: Image.asset(
-              icon,
-              fit: BoxFit.cover,
-              width: 50.w,
-              height: 50.w,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25.r),
+              child: Image.asset(
+                icon,
+                fit: BoxFit.cover,
+                width: 40.w,
+                height: 40.w,
+              ),
             ),
           ),
         ),
