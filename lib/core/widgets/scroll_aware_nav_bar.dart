@@ -15,7 +15,7 @@ class ScrollAwareScaffold extends StatefulWidget {
     this.navWidthFactor = 0.85,
     this.navHeight = 60,
     this.innerPadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-    this.idleDuration = const Duration(seconds: 2),
+    this.idleDuration = const Duration(milliseconds: 1500),
   });
 
   final List<Widget> pages;
@@ -149,7 +149,7 @@ class _ScrollAwareScaffoldState extends State<ScrollAwareScaffold> {
                           height: widget.navHeight,
                           elevation: 0,
                           backgroundColor: Colors.transparent,
-                          indicatorColor: widget.navColor.withOpacity(0.25),
+                          indicatorColor: widget.navColor.withOpacity(0.5),
                           labelBehavior:
                               NavigationDestinationLabelBehavior.alwaysShow,
                           destinations: widget.destinations,
