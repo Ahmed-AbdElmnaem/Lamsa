@@ -1,4 +1,4 @@
-import 'package:lamsa/features/home/ui/data/model/product_model.dart';
+import 'package:lamsa/features/home/data/model/product_model.dart';
 
 final List<ProductModel> kFakeProducts = [
   ProductModel(

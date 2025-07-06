@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lamsa/core/helpers/extensions.dart';
 import 'package:lamsa/features/home/ui/widgets/section_header.dart';
 
-import '../data/model/category_model.dart';
+import '../../data/model/category_model.dart';
 import 'category_card.dart';
 
 class CategorySection extends StatelessWidget {

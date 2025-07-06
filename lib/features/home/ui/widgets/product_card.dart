@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lamsa/core/helpers/extensions.dart';
 import 'package:lamsa/core/theming/color_manager.dart';
 import 'package:lamsa/core/theming/styles.dart';
-import 'package:lamsa/features/home/ui/data/model/product_model.dart';
+import 'package:lamsa/features/home/data/model/product_model.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({

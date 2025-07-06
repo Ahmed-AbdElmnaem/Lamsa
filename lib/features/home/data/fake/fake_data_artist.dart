@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:lamsa/core/localization/locale_keys.dart';
-import 'package:lamsa/features/home/ui/data/model/artist_model.dart';
+import 'package:lamsa/features/home/data/model/artist_model.dart';
 
 /// Fake seed data for demo & prototyping.
 ///

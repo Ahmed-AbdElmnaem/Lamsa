@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lamsa/core/helpers/extensions.dart';
-import 'package:lamsa/features/home/ui/data/model/artist_model.dart';
+import 'package:lamsa/features/home/data/model/artist_model.dart';
 import 'package:lamsa/features/home/ui/widgets/artists_card.dart';
 import 'package:lamsa/features/home/ui/widgets/section_header.dart';
 
