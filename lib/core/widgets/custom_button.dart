@@ -17,6 +17,8 @@ class CustomButton extends StatefulWidget {
     this.borderRadius = 16,
     this.height = 50,
     this.width,
+    this.colorBorder,
+    this.widthBorder,
   });
 
   final String text;
@@ -28,8 +30,11 @@ class CustomButton extends StatefulWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final double borderRadius;
+
   final double height;
-  final double? width; // null ➜ expand
+  final double? width;
+  final Color? colorBorder;
+  final double? widthBorder;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -76,10 +81,17 @@ class _CustomButtonState extends State<CustomButton>
           shadowColor: Colors.black.withOpacity(0.25),
           child: InkWell(
             onTap: widget.onPressed,
-            borderRadius: BorderRadius.circular(widget.borderRadius.r),
+
             splashColor: fg.withOpacity(0.1),
             highlightColor: Colors.transparent,
             child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(widget.borderRadius.r),
+                border: Border.all(
+                  color: widget.colorBorder ?? ColorManager.mainColor,
+                  width: widget.widthBorder ?? 0,
+                ),
+              ),
               height: widget.height.h,
               width: widget.width?.w ?? double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 20.w),

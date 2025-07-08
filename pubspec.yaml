@@ -49,6 +49,8 @@ dependencies:
   cached_network_image: ^3.4.1
   sign_in_button: ^4.0.1
   country_code_picker: ^3.3.0
+  local_hero_transform: ^1.0.6
+  animate_do: ^4.2.0
 
 dev_dependencies:
   flutter_test:

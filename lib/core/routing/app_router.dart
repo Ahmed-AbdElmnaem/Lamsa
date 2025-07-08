@@ -4,9 +4,12 @@ import 'package:lamsa/core/theming/styles.dart';
 import 'package:lamsa/core/utils/assets_manager.dart';
 import 'package:lamsa/features/auth/login/ui/screen/login_screen.dart';
 import 'package:lamsa/features/auth/register/ui/screen/register_screen.dart';
+import 'package:lamsa/features/home/data/model/product_model.dart';
 import 'package:lamsa/features/home/ui/screen/home_screen.dart';
 import 'package:lamsa/features/intro/onboarding/ui/screen/onboarding_screen.dart';
 import 'package:lamsa/features/intro/splash/splash_screen.dart';
+import 'package:lamsa/features/product/product_details/ui/screen/product_details_screen.dart';
+import 'package:lamsa/features/product/ui/screen/product_screen.dart';
 import 'package:lamsa/layout/main_layout.dart';
 
 import 'routes.dart';
@@ -28,6 +31,16 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case Routes.productDetails:
+        final product = settings.arguments as ProductModel;
+        return MaterialPageRoute(
+          builder: (_) => ProductDetailsScreen(product: product),
+        );
+      case Routes.product:
+        final String? categoryId = settings.arguments as String?;
+        return MaterialPageRoute(
+          builder: (_) => ProductScreen(categoryId: categoryId),
+        );
 
       default:
         return MaterialPageRoute(
