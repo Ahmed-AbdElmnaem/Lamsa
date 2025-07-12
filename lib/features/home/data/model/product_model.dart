@@ -16,12 +16,13 @@ class ProductModel {
     this.specialty,
     this.location,
     this.nameStore,
+    this.highlights,
   });
 
   final String id;
   final String categoryId; // Optional category ID for product categorization
   final String name;
-  final String imageUrl;
+  final List<String> imageUrl;
   final double price;
   final double? oldPrice;
   final String? description;
@@ -32,6 +33,7 @@ class ProductModel {
   final String? specialty;
   final String? location;
   final String? nameStore;
+  final List<String>? highlights;
 
   bool get hasDiscount => oldPrice != null && oldPrice! > price;
   double get discountPerc =>
@@ -52,5 +54,6 @@ class ProductModel {
     location: location,
     nameStore: nameStore,
     isFavorite: isFavorite ?? this.isFavorite,
+    highlights: highlights,
   );
 }

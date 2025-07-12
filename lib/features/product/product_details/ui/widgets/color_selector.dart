@@ -1,57 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:lamsa/core/helpers/extensions.dart';
+import 'package:lamsa/core/theming/styles.dart';
 
-class ColorSelector extends StatefulWidget {
+class ProductColorSelector extends StatelessWidget {
   final List<Color> colors;
-  final Function(Color) onColorSelected;
-  final Color? selectedColor;
+  final Color selectedColor;
+  final ValueChanged<Color> onSelect;
 
-  const ColorSelector({
+  const ProductColorSelector({
     super.key,
     required this.colors,
-    required this.onColorSelected,
-    this.selectedColor,
+    required this.selectedColor,
+    required this.onSelect,
   });
 
   @override
-  State<ColorSelector> createState() => _ColorSelectorState();
-}
-
-class _ColorSelectorState extends State<ColorSelector> {
-  late Color? _selected;
-
-  @override
-  void initState() {
-    super.initState();
-    _selected = widget.selectedColor;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 10,
-      children:
-          widget.colors.map((color) {
-            final isSelected = _selected == color;
-
-            return GestureDetector(
-              onTap: () {
-                setState(() => _selected = color);
-                widget.onColorSelected(color);
-              },
-              child: Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  color: color,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: isSelected ? Colors.black : Colors.grey,
-                    width: isSelected ? 3 : 1,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('اللون:', style: Styles.font16W600),
+        12.0.height,
+        SizedBox(
+          height: 50,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: colors.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 8),
+            itemBuilder: (context, index) {
+              final color = colors[index];
+              final isSelected = color == selectedColor;
+              return GestureDetector(
+                onTap: () => onSelect(color),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: color,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: isSelected ? Colors.black : Colors.transparent,
+                      width: 2,
+                    ),
                   ),
+                  child:
+                      isSelected
+                          ? const Center(
+                            child: Icon(
+                              Icons.check,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          )
+                          : null,
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            },
+          ),
+        ),
+        16.0.height,
+      ],
     );
   }
 }

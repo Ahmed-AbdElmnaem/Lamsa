@@ -4,6 +4,7 @@ import 'package:lamsa/core/theming/styles.dart';
 import 'package:lamsa/core/utils/assets_manager.dart';
 import 'package:lamsa/features/auth/login/ui/screen/login_screen.dart';
 import 'package:lamsa/features/auth/register/ui/screen/register_screen.dart';
+import 'package:lamsa/features/cart/ui/screen/cart_screen.dart';
 import 'package:lamsa/features/home/data/model/product_model.dart';
 import 'package:lamsa/features/home/ui/screen/home_screen.dart';
 import 'package:lamsa/features/intro/onboarding/ui/screen/onboarding_screen.dart';
@@ -40,6 +41,18 @@ class AppRouter {
         final String? categoryId = settings.arguments as String?;
         return MaterialPageRoute(
           builder: (_) => ProductScreen(categoryId: categoryId),
+        );
+      case Routes.cart:
+        final List<ProductModel> products =
+            settings.arguments as List<ProductModel>;
+        return MaterialPageRoute(
+          builder:
+              (_) => CartScreen(
+                quantities: [
+                  for (var product in products) 1,
+                ], // Assuming quantity is 1 for each product
+                products: products,
+              ),
         );
 
       default:

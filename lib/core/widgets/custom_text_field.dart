@@ -25,6 +25,7 @@ class AppTextFormField extends StatefulWidget {
   final int? maxLines;
   final int? minLines;
   final FocusNode? focusNode;
+  final InputBorder? border;
 
   const AppTextFormField({
     super.key,
@@ -47,6 +48,7 @@ class AppTextFormField extends StatefulWidget {
     this.maxLines,
     this.minLines,
     this.focusNode,
+    this.border,
   });
 
   @override
@@ -87,6 +89,8 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
               : [],
       style: Styles.font16W400.copyWith(color: Colors.white),
       decoration: InputDecoration(
+        border: widget.border ?? InputBorder.none,
+
         prefixIcon: widget.prefixIcon,
         filled: true,
         fillColor: widget.backgroundColor ?? Colors.white.withOpacity(0.07),

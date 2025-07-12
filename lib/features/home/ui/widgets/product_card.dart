@@ -54,7 +54,10 @@ class ProductCard extends StatelessWidget {
                     Hero(
                       tag: heroTag ?? product.id,
                       child: CachedNetworkImage(
-                        imageUrl: product.imageUrl,
+                        imageUrl:
+                            product.imageUrl.isNotEmpty
+                                ? product.imageUrl.first
+                                : 'https://via.placeholder.com/150',
                         fit: BoxFit.cover,
                         placeholder:
                             (context, url) => const Center(

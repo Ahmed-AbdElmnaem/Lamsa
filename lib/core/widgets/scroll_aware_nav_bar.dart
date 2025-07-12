@@ -1,169 +1,182 @@
-import 'dart:async';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
-class ScrollAwareScaffold extends StatefulWidget {
-  const ScrollAwareScaffold({
+class ScrollAwareNavScaffold extends StatefulWidget {
+  const ScrollAwareNavScaffold({
     super.key,
     required this.pages,
     required this.destinations,
     required this.navColor,
     this.labelColor = Colors.white,
-    this.navMargin = const EdgeInsets.only(bottom: 16),
-    this.navWidthFactor = 0.85,
-    this.navHeight = 60,
-    this.innerPadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-    this.idleDuration = const Duration(milliseconds: 1500),
-  });
+    this.barHeight = 56,
+    this.animationDuration = const Duration(milliseconds: 300),
+  }) : assert(
+         pages.length == destinations.length,
+         'pages & destinations must have the same length',
+       );
 
   final List<Widget> pages;
   final List<NavigationDestination> destinations;
   final Color navColor;
   final Color labelColor;
-  final EdgeInsets navMargin;
-  final double navWidthFactor;
-  final double navHeight;
-  final EdgeInsets innerPadding;
-
-  /// كم من الوقت ينتظر قبل ما يُظهر الـ NavBar بعد التوقف عن السكروول.
-  final Duration idleDuration;
+  final double barHeight;
+  final Duration animationDuration;
 
   @override
-  State<ScrollAwareScaffold> createState() => _ScrollAwareScaffoldState();
+  State<ScrollAwareNavScaffold> createState() => _ScrollAwareNavScaffoldState();
 }
 
-class _ScrollAwareScaffoldState extends State<ScrollAwareScaffold> {
-  final PageController _page = PageController();
-  final ScrollController _scroll = ScrollController();
-  final ValueNotifier<bool> _visible = ValueNotifier<bool>(true);
-  Timer? _idleTimer;
-  int _index = 0;
+class _ScrollAwareNavScaffoldState extends State<ScrollAwareNavScaffold>
+    with TickerProviderStateMixin {
+  late final PageController _pageController;
+  late final AnimationController _hideController;
+  int _currentIndex = 0;
+  double _lastScrollPosition = 0;
+  bool _isScrollingDown = false;
 
   @override
   void initState() {
     super.initState();
-    _scroll.addListener(_handleScroll);
-  }
-
-  void _resetIdleTimer() {
-    _idleTimer?.cancel();
-    _idleTimer = Timer(widget.idleDuration, () {
-      if (!_visible.value) _visible.value = true;
-    });
-  }
-
-  void _handleScroll() {
-    final dir = _scroll.position.userScrollDirection;
-
-    // Hide immediately while scrolling down.
-    if (dir == ScrollDirection.reverse && _visible.value) {
-      _visible.value = false;
-    }
-
-    // whenever scrolling (any direction) restart idle timer.
-    _resetIdleTimer();
-
-    // لو وصل لأعلى الليست أخليه يظهر فورى.
-    if (_scroll.position.pixels <= 0 && !_visible.value) {
-      _visible.value = true;
-      _idleTimer?.cancel();
-    }
+    _pageController = PageController();
+    _hideController = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration,
+      value: 1.0, // Start with visible bar
+    );
+    _applySystemUi(visible: true);
   }
 
   @override
   void dispose() {
-    _scroll
-      ..removeListener(_handleScroll)
-      ..dispose();
-    _page.dispose();
-    _visible.dispose();
-    _idleTimer?.cancel();
+    _pageController.dispose();
+    _hideController.dispose();
     super.dispose();
+  }
+
+  void _applySystemUi({required bool visible}) {
+    final isLight = widget.navColor.computeLuminance() > 0.5;
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: widget.navColor,
+        systemNavigationBarColor: widget.navColor,
+        systemNavigationBarIconBrightness:
+            isLight ? Brightness.dark : Brightness.light,
+        statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
+      ),
+    );
+  }
+
+  bool _handleScrollNotification(ScrollNotification notification) {
+    if (notification is ScrollUpdateNotification) {
+      if (notification.metrics.axis == Axis.vertical) {
+        final currentPosition = notification.metrics.pixels;
+        _isScrollingDown = currentPosition > _lastScrollPosition;
+        _lastScrollPosition = currentPosition;
+
+        if (notification.scrollDelta!.abs() > 5) {
+          _handleScrollDirection(_isScrollingDown);
+        }
+      }
+    }
+    return false;
+  }
+
+  void _handleScrollDirection(bool isScrollingDown) {
+    if (isScrollingDown) {
+      if (_hideController.value != 0.0) {
+        _hideController.animateTo(0.0);
+      }
+    } else {
+      if (_hideController.value != 1.0) {
+        _hideController.animateTo(1.0);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final screenW = MediaQuery.of(context).size.width;
-    final maxW =
-        widget.navWidthFactor <= 1
-            ? screenW * widget.navWidthFactor
-            : widget.navWidthFactor;
-    final radius = widget.navHeight / 2;
-
-    WidgetStateProperty<TextStyle?> labelStyle(Color c) =>
-        WidgetStateProperty.resolveWith(
-          (_) => TextStyle(color: c, fontSize: 12, fontWeight: FontWeight.w500),
-        );
+    final statusBarHeight = MediaQuery.of(context).padding.top;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return Scaffold(
-      extendBody: true,
+      backgroundColor: widget.navColor,
       body: Stack(
         children: [
-          PageView.builder(
-            controller: _page,
-            onPageChanged: (i) => setState(() => _index = i),
-            itemCount: widget.pages.length,
-            itemBuilder:
-                (_, i) => PrimaryScrollController(
-                  controller: _scroll,
-                  child: widget.pages[i],
-                ),
-          ),
-          ValueListenableBuilder<bool>(
-            valueListenable: _visible,
-            builder:
-                (_, show, child) => AnimatedSlide(
-                  duration: const Duration(milliseconds: 280),
-                  offset: show ? Offset.zero : const Offset(0, 1.5),
-                  curve: Curves.fastOutSlowIn,
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 280),
-                    opacity: show ? 1 : 0,
-                    curve: Curves.easeInOut,
-                    child: child,
+          // Main content
+          Positioned.fill(
+            child: PageView.builder(
+              controller: _pageController,
+              physics: const ClampingScrollPhysics(),
+              onPageChanged: (index) {
+                setState(() => _currentIndex = index);
+                _hideController.animateTo(
+                  1.0,
+                ); // Ensure bar is visible on page change
+              },
+              itemCount: widget.pages.length,
+              itemBuilder: (_, index) {
+                return NotificationListener<ScrollNotification>(
+                  onNotification: _handleScrollNotification,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: statusBarHeight,
+                      bottom: bottomPadding,
+                    ),
+                    child: widget.pages[index],
                   ),
-                ),
-            child: SafeArea(
-              bottom: true,
-              top: false,
-              child: Padding(
-                padding: widget.navMargin,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: maxW),
-                    child: _GlassBar(
-                      color: widget.navColor,
-                      radius: radius,
-                      innerPadding: widget.innerPadding,
-                      child: NavigationBarTheme(
-                        data: NavigationBarThemeData(
-                          labelTextStyle: labelStyle(widget.labelColor),
-                          iconTheme: WidgetStateProperty.all(
-                            IconThemeData(color: widget.labelColor),
+                );
+              },
+            ),
+          ),
+
+          // Navigation Bar
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: AnimatedBuilder(
+              animation: _hideController,
+              builder: (context, _) {
+                return Transform.translate(
+                  offset: Offset(
+                    0,
+                    (1 - _hideController.value) *
+                        (widget.barHeight + bottomPadding),
+                  ),
+                  child: Material(
+                    color: widget.navColor,
+                    child: SafeArea(
+                      top: false,
+                      child: SizedBox(
+                        height: widget.barHeight,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: List.generate(
+                            widget.destinations.length,
+                            (index) => _NavBarItem(
+                              destination: widget.destinations[index],
+                              isSelected: _currentIndex == index,
+                              labelColor: widget.labelColor,
+                              onTap: () {
+                                if (_currentIndex != index) {
+                                  _pageController.animateToPage(
+                                    index,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeInOut,
+                                  );
+                                }
+                                _hideController.animateTo(
+                                  1.0,
+                                ); // Show bar on tap
+                              },
+                            ),
                           ),
-                        ),
-                        child: NavigationBar(
-                          height: widget.navHeight,
-                          elevation: 0,
-                          backgroundColor: Colors.transparent,
-                          indicatorColor: widget.navColor.withOpacity(0.5),
-                          labelBehavior:
-                              NavigationDestinationLabelBehavior.alwaysShow,
-                          destinations: widget.destinations,
-                          selectedIndex: _index,
-                          onDestinationSelected: (i) {
-                            setState(() => _index = i);
-                            _page.jumpToPage(i);
-                          },
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ),
         ],
@@ -172,41 +185,46 @@ class _ScrollAwareScaffoldState extends State<ScrollAwareScaffold> {
   }
 }
 
-class _GlassBar extends StatelessWidget {
-  const _GlassBar({
-    required this.color,
-    required this.child,
-    required this.radius,
-    required this.innerPadding,
+class _NavBarItem extends StatelessWidget {
+  const _NavBarItem({
+    required this.destination,
+    required this.isSelected,
+    required this.labelColor,
+    required this.onTap,
   });
 
-  final Color color;
-  final Widget child;
-  final double radius;
-  final EdgeInsets innerPadding;
+  final NavigationDestination destination;
+  final bool isSelected;
+  final Color labelColor;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(radius),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [color.withOpacity(0.55), color.withOpacity(0.35)],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.10),
-                blurRadius: 22,
-                offset: const Offset(0, 8),
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconTheme(
+              data: IconThemeData(
+                color: isSelected ? labelColor : Colors.grey,
+                size: 24,
               ),
-            ],
-          ),
-          child: Padding(padding: innerPadding, child: child),
+              child: destination.icon,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              destination.label,
+              style: TextStyle(
+                color: isSelected ? labelColor : Colors.grey,
+                fontSize: isSelected ? 12 : 11,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+              ),
+            ),
+          ],
         ),
       ),
     );

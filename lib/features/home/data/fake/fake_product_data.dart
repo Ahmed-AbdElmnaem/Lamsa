@@ -6,8 +6,10 @@ final kFakeProducts = <ProductModel>[
     categoryId: 'makeup',
     id: 'makeup_1',
     name: 'أحمر شفاه مات',
-    imageUrl:
-        'https://icare.ps/upload/09-2023/product/4606f7ff-ffab-4a44-b900-22427a072d08-IDX.jpeg',
+    imageUrl: [
+      'https://icare.ps/upload/09-2023/product/4606f7ff-ffab-4a44-b900-22427a072d08-IDX.jpeg',
+    ],
+
     price: 120,
     oldPrice: 200,
     rating: 4.8,
@@ -23,8 +25,9 @@ final kFakeProducts = <ProductModel>[
     categoryId: 'hair',
     id: 'hair_1',
     name: 'مجفف شعر احترافي',
-    imageUrl:
-        'https://chandbe.com/cdn/shop/files/SleekBlowDryer-_2.webp?v=1748732954',
+    imageUrl: [
+      'https://chandbe.com/cdn/shop/files/SleekBlowDryer-_2.webp?v=1748732954',
+    ],
     price: 950,
     rating: 4.5,
     description: 'ستشوار يجفف الشعر بسرعة ضغط هواء عالٍ و3 مستويات حرارة.',
@@ -34,11 +37,11 @@ final kFakeProducts = <ProductModel>[
     location: 'القاهرة',
   ),
   ProductModel(
+    price: 430,
     categoryId: 'skin',
     id: 'skin_1',
     name: 'غارنييه سيروم فيتامين سي',
-    imageUrl: 'https://www.se7rek.com/uploads/products/source/78115524.webp',
-    price: 430,
+    imageUrl: ['https://www.se7rek.com/uploads/products/source/78115524.webp'],
     oldPrice: 480,
     rating: 4.9,
     description: 'تفتيح فوري وشد للجلد بتركيبة خفيفة.',
@@ -51,8 +54,9 @@ final kFakeProducts = <ProductModel>[
     categoryId: 'makeup',
     id: 'makeup_2',
     name: 'فاونديشن نارس لايت ريفلكتنق',
-    imageUrl:
-        'https://cdn.salla.sa/pwGog/JpG1o9joQW0viXARBAZtyotkdwmXySoz7O6etl6B.jpg',
+    imageUrl: [
+      'https://cdn.salla.sa/pwGog/JpG1o9joQW0viXARBAZtyotkdwmXySoz7O6etl6B.jpg',
+    ],
     price: 430,
     oldPrice: 480,
     rating: 4.9,
@@ -66,8 +70,9 @@ final kFakeProducts = <ProductModel>[
     categoryId: 'perfume',
     id: 'perfume',
     name: 'عطر او دي بارفان اوليمبيا للنساء من باكو رابان، 80 مل',
-    imageUrl:
-        'https://m.media-amazon.com/images/I/61oLZdH5SFL.__AC_SX300_SY300_QL70_ML2_.jpg',
+    imageUrl: [
+      'https://m.media-amazon.com/images/I/61oLZdH5SFL.__AC_SX300_SY300_QL70_ML2_.jpg',
+    ],
     price: 430,
     oldPrice: 480,
     rating: 4.9,
@@ -81,8 +86,9 @@ final kFakeProducts = <ProductModel>[
     categoryId: 'makeup',
     id: 'makeup_4',
     name: 'إيڤا سكين كير ديليكس للبشرة',
-    imageUrl:
-        'https://www.elegantstore-eg.com/wp-content/uploads/2023/11/eva-natural-glow-day-cream.webp',
+    imageUrl: [
+      'https://www.elegantstore-eg.com/wp-content/uploads/2023/11/eva-natural-glow-day-cream.webp',
+    ],
     price: 430,
     oldPrice: 480,
     rating: 4.9,
@@ -97,7 +103,17 @@ final kFakeProducts = <ProductModel>[
     categoryId: 'accessories',
     id: 'accessories_1',
     name: 'حلق متدلي على شكل دمعة ',
-    imageUrl: 'https://m.media-amazon.com/images/I/31EHKEJADsL._AC_.jpg',
+    imageUrl: [
+      'https://m.media-amazon.com/images/I/31EHKEJADsL._AC_.jpg',
+      'https://m.media-amazon.com/images/I/41b-m4IsLCL._AC_SX679_.jpg',
+    ],
+    highlights: [
+      'مصنوع من المعدن',
+      'إغلاق آمن يعمل بالضغط للخلف',
+      'مستوحاة من المشاهير',
+      'هدية مثالية للذكرى السنوية، عيد ميلاد، عيد الحب',
+      'تناسب جميع المناسبات',
+    ],
     price: 65,
     rating: 3.5,
     colors: [Colors.amber, Colors.grey],

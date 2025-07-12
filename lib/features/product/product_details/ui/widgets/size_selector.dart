@@ -1,52 +1,61 @@
+// widgets/product_size_selector.dart
 import 'package:flutter/material.dart';
-import 'package:lamsa/core/theming/color_manager.dart';
+import 'package:lamsa/core/helpers/extensions.dart';
+import 'package:lamsa/core/theming/styles.dart';
 
-class SizeSelector extends StatefulWidget {
+class ProductSizeSelector extends StatelessWidget {
   final List<String> sizes;
-  final Function(String) onSizeSelected;
-  final String? selectedSize;
+  final String selectedSize;
+  final ValueChanged<String> onSelect;
 
-  const SizeSelector({
+  const ProductSizeSelector({
     super.key,
     required this.sizes,
-    required this.onSizeSelected,
-    this.selectedSize,
+    required this.selectedSize,
+    required this.onSelect,
   });
 
   @override
-  State<SizeSelector> createState() => _SizeSelectorState();
-}
-
-class _SizeSelectorState extends State<SizeSelector> {
-  late String? _selected;
-
-  @override
-  void initState() {
-    super.initState();
-    _selected = widget.selectedSize;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 12,
-      children:
-          widget.sizes.map((size) {
-            final isSelected = _selected == size;
-
-            return ChoiceChip(
-              label: Text(size),
-              selected: isSelected,
-              selectedColor: ColorManager.mainColor,
-              labelStyle: TextStyle(
-                color: isSelected ? Colors.white : ColorManager.secondColor,
-              ),
-              onSelected: (_) {
-                setState(() => _selected = size);
-                widget.onSizeSelected(size);
-              },
-            );
-          }).toList(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('المقاس: $selectedSize', style: Styles.font16W600),
+        12.0.height,
+        SizedBox(
+          height: 40,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: sizes.length,
+            separatorBuilder: (_, __) => 8.0.width,
+            itemBuilder: (context, index) {
+              final size = sizes[index];
+              final isSelected = size == selectedSize;
+              return GestureDetector(
+                onTap: () => onSelect(size),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isSelected ? Colors.black : Colors.grey[100],
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey[300]!),
+                  ),
+                  child: Text(
+                    size,
+                    style: Styles.font14W600.copyWith(
+                      color: isSelected ? Colors.white : Colors.black,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        16.0.height,
+      ],
     );
   }
 }

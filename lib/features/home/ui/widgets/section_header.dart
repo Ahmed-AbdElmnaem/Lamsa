@@ -12,7 +12,7 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
       child: Row(
         children: [
           Text(
@@ -24,7 +24,7 @@ class SectionHeader extends StatelessWidget {
             TextButton(
               onPressed: onMorePressed,
               child: Text(
-                'المزيد ..',
+                'المزيد',
                 style: Styles.font16W500.copyWith(
                   color: ColorManager.mainColor,
                 ),
